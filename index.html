@@ -1,120 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Gutter Diagram</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
     }
-
-.container {
-  position: relative;
-  width: 100vw;
-  max-width: 100%;
-  margin: 0;
-  min-height: 400px;
-  overflow-x: hidden;
-}
-
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      margin: auto;
+    }
     .container img {
       width: 100%;
       height: auto;
       display: block;
     }
-
     .hotspot {
       position: absolute;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-family: Arial, sans-serif;
       font-weight: bold;
+      font-size: 14px;
       color: black;
-      font-size: 3vw;
-      max-width: 300px;
-      background-color: rgba(255, 255, 255, 0.85);
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+      border-radius: 50%;
+      background-color: #00ff75;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .dot-left {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      padding: 8px;
       border-radius: 4px;
       z-index: 10;
     }
-
-    .hotspot .label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 8px;
+    .hotspot:hover .tooltip {
+      display: block;
     }
 
-    .dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background-color: #00ff6a;
-      animation: pulse 1.5s infinite;
-      flex-shrink: 0;
-    }
-
-    .dot-left .label {
-      flex-direction: row;
-    }
-
-    .dot-right .label {
-      flex-direction: row-reverse;
-    }
-
-    .dot-above .label {
-      flex-direction: column;
-    }
-
-    .tooltip {
-      visibility: hidden;
-      background-color: #f9f9f9;
-      color: #333;
-      text-align: left;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      position: absolute;
-      z-index: 20;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90vw;
-      max-width: 250px;
-      box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
-      font-size: 3.5vw;
-      margin-top: 5px;
-    }
-
-    .hotspot:hover .tooltip,
-    .hotspot:active .tooltip {
-      visibility: visible;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-      50% {
-        transform: scale(1.6);
-        opacity: 0.2;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-    }
-
-    @media (min-width: 768px) {
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
       .hotspot {
-        font-size: 1rem;
+        font-size: 11px;
+        flex-direction: column;
+        align-items: center;
+        white-space: normal;
+        text-align: center;
       }
-      .tooltip {
-        font-size: 0.9rem;
-        width: 250px;
+      .dot-left {
+        flex-direction: column;
+      }
+      .dot {
+        margin: 4px 0;
+        width: 10px;
+        height: 10px;
       }
     }
   </style>
@@ -124,64 +90,41 @@
     <img src="gutter-diagram-2.png" alt="Gutter Diagram" />
 
     <!-- LEFT DOTS -->
-    <div class="hotspot dot-left" style="top: 9%; left: 84%;">
-      <div class="label">
-        <div class="dot"></div>
-        MOLD & MILDEW
-      </div>
-      <div class="tooltip">Water runoff from clogged gutters can seep into crawlspaces causing mold and mildew growth which can damage your home’s foundation and create a health hazard.</div>
+    <div class="hotspot dot-left" style="top: 12%; left: 6%;">
+      <div class="dot"></div> LADDER SAFETY
+      <div class="tooltip">Climbing ladders around clogged gutters increases fall risk.</div>
     </div>
 
-    <div class="hotspot dot-left" style="top: 44%; left: 91%;">
-      <div class="label">
-        <div class="dot"></div>
-        FIRE
-      </div>
-      <div class="tooltip">Unprotected gutters allow flammable debris, like dried leaves and twigs, to collect creating a potential source of ignition and flame spread.</div>
+    <div class="hotspot dot-left" style="top: 56%; left: 6%;">
+      <div class="dot"></div> INFESTATION
+      <div class="tooltip">Standing water and debris create homes for bugs, rodents, and pests.</div>
     </div>
 
-    <div class="hotspot dot-left" style="top: 92%; left: 93%;">
-      <div class="label">
-        <div class="dot"></div>
-        LANDSCAPE EROSION
-      </div>
-      <div class="tooltip">Pooling water from overflowing gutters can displace soil and damage plants, detracting from a home’s appearance.</div>
+    <div class="hotspot dot-left" style="top: 71%; left: 6%;">
+      <div class="dot"></div> BASEMENT FLOODING
+      <div class="tooltip">Overflowing gutters can lead to water seeping into the basement.</div>
+    </div>
+
+    <div class="hotspot dot-left" style="top: 88%; left: 6%;">
+      <div class="dot"></div> FOUNDATION CRACKING
+      <div class="tooltip">Poor drainage causes soil erosion and foundation shifting/cracks.</div>
     </div>
 
     <!-- RIGHT DOTS -->
-    <div class="hotspot dot-right" style="top: 54%; left: 10%;">
-      <div class="label">
-        INFESTATION
-        <div class="dot"></div>
-      </div>
-      <div class="tooltip">Clogged gutters create an ideal environment for pests, such as mosquitoes, wasps, and ants to nest.</div>
+    <div class="hotspot dot-right" style="top: 18%; left: 91%;">
+      <div class="dot"></div> MOLD & MILDEW
+      <div class="tooltip">Excess moisture leads to mold growth on siding and rooflines.</div>
     </div>
 
-    <div class="hotspot dot-right" style="top: 78%; left: 11%;">
-      <div class="label">
-        BASEMENT FLOODING
-        <div class="dot"></div>
-      </div>
-      <div class="tooltip">Water can seep and flood your basement when it runs off of unprotected and clogged gutters.</div>
+    <div class="hotspot dot-right" style="top: 44%; left: 91%;">
+      <div class="dot"></div> FIRE
+      <div class="tooltip">Dry leaves in gutters are fuel for ember-driven wildfires.</div>
     </div>
 
-    <div class="hotspot dot-right" style="top: 17%; left: 9%;">
-      <div class="label">
-        LADDER SAFETY
-        <div class="dot"></div>
-      </div>
-      <div class="tooltip">Falls from ladders, like those used in gutter cleaning, are a leading cause of injury-related deaths in the U.S.</div>
+    <div class="hotspot dot-right" style="top: 64%; left: 91%;">
+      <div class="dot"></div> LANDSCAPE EROSION
+      <div class="tooltip">Overflowing water damages soil, roots, and decorative features.</div>
     </div>
-
-    <!-- ABOVE DOT -->
-    <div class="hotspot dot-above" style="top: 95%; left: 48%;">
-      <div class="label">
-        <div class="dot"></div>
-        FOUNDATION CRACKING
-      </div>
-      <div class="tooltip">Improper water control from overflowing gutters can erode soil, causing foundation materials to shift which can lead to potential structural damage.</div>
-    </div>
-
   </div>
 </body>
 </html>
