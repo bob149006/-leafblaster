@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Gutter Diagram</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      margin: auto;
+    }
+    .container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hotspot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      background-color: #4CAF50;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+    .hotspot::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 14px;
+      display: none;
+    }
+    .hotspot:hover::after {
+      display: block;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+
+    @media (max-width: 768px) {
+      .hotspot::after {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="final-diagram.png" alt="Gutter Diagram" />
+    <div class="hotspot" style="top: 24%; left: 13%;" data-tooltip="Ladder Safety"></div>
+    <div class="hotspot" style="top: 35%; left: 15%;" data-tooltip="Infestation"></div>
+    <div class="hotspot" style="top: 48%; left: 17%;" data-tooltip="Basement Flooding"></div>
+    <div class="hotspot" style="top: 64%; left: 44%;" data-tooltip="Foundation Cracking"></div>
+    <div class="hotspot" style="top: 19%; left: 83%;" data-tooltip="Mold"></div>
+    <div class="hotspot" style="top: 39%; left: 79%;" data-tooltip="Fire Hazard"></div>
+    <div class="hotspot" style="top: 58%; left: 76%;" data-tooltip="Landscape Damage"></div>
+  </div>
+</body>
+</html>
