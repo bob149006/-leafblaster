@@ -1,130 +1,127 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
   <title>Interactive Gutter Diagram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
+    body, html { margin:0; padding:0; height:100%; }
     .container {
       position: relative;
       width: 100%;
-      max-width: 1280px;
-      margin: auto;
+      max-width: 800px;
+      margin: 0 auto;
     }
     .container img {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
     }
     .hotspot {
       position: absolute;
       display: flex;
       align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       font-weight: bold;
-      font-size: 14px;
-      color: black;
-      white-space: nowrap;
-      z-index: 2;
+      color: #006400; /* dark green for contrast */
+      font-size: 18px;
     }
-    .dot {
-      width: 12px;
-      height: 12px;
-      margin: 0 6px;
+    .hotspot .dot {
+      width: 16px;
+      height: 16px;
+      background: #4CAF50;
       border-radius: 50%;
-      background-color: #00ff75;
+      margin-right: 6px;
       animation: pulse 2s infinite;
-      flex-shrink: 0;
     }
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.5); opacity: 0.6; }
-      100% { transform: scale(1); opacity: 1; }
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.4); }
+      100% { transform: scale(1); }
     }
-    .dot-left {
-      flex-direction: row-reverse;
-      text-align: right;
-    }
-    .tooltip {
-      display: none;
+    /* Tooltip styling */
+    .hotspot .tooltip {
+      visibility: hidden;
       position: absolute;
-      top: 100%;
-      left: 0;
-      width: 200px;
-      background: rgba(0,0,0,0.75);
-      color: white;
+      background: #f9f9f9;
+      color: #333;
       padding: 8px;
+      border: 1px solid #ccc;
       border-radius: 4px;
+      white-space: nowrap;
       z-index: 10;
+      top: 110%;
+      left: 0;
+      font-size: 14px;
+      line-height: 1.2;
     }
     .hotspot:hover .tooltip {
-      display: block;
+      visibility: visible;
     }
-
     /* Mobile adjustments */
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .hotspot {
-        font-size: 11px;
-        flex-direction: column;
-        align-items: center;
-        white-space: normal;
-        text-align: center;
+        font-size: 14px;
       }
-      .dot-left {
-        flex-direction: column;
+      .hotspot .dot {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
       }
-      .dot {
-        margin: 4px 0;
-        width: 10px;
-        height: 10px;
+      .hotspot .tooltip {
+        font-size: 12px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="gutter-diagram-2.png" alt="Gutter Diagram" />
+    <img src="final-diagram.png" alt="House Diagram">
 
-    <!-- LEFT DOTS -->
-    <div class="hotspot dot-left" style="top: 12%; left: 6%;">
-      <div class="dot"></div> LADDER SAFETY
-      <div class="tooltip">Climbing ladders around clogged gutters increases fall risk.</div>
+    <div class="hotspot" style="top: 24%; left: 13%;">
+      <div class="dot"></div>
+      LADDER SAFETY
+      <div class="tooltip">Falls from ladders are a leading cause of injury-related deaths in the U.S.</div>
     </div>
 
-    <div class="hotspot dot-left" style="top: 56%; left: 6%;">
-      <div class="dot"></div> INFESTATION
-      <div class="tooltip">Standing water and debris create homes for bugs, rodents, and pests.</div>
+    <div class="hotspot" style="top: 35%; left: 15%;">
+      <div class="dot"></div>
+      INFESTATION
+      <div class="tooltip">Clogged gutters allow pests, such as mosquitoes, wasps, and ants to nest.</div>
     </div>
 
-    <div class="hotspot dot-left" style="top: 71%; left: 6%;">
-      <div class="dot"></div> BASEMENT FLOODING
-      <div class="tooltip">Overflowing gutters can lead to water seeping into the basement.</div>
+    <div class="hotspot" style="top: 48%; left: 17%;">
+      <div class="dot"></div>
+      BASEMENT FLOODING
+      <div class="tooltip">Water can seep and flood your basement when gutters overflow.</div>
     </div>
 
-    <div class="hotspot dot-left" style="top: 88%; left: 6%;">
-      <div class="dot"></div> FOUNDATION CRACKING
-      <div class="tooltip">Poor drainage causes soil erosion and foundation shifting/cracks.</div>
+    <div class="hotspot" style="top: 44%; left: 44%;">
+      <div class="dot"></div>
+      FOUNDATION CRACKING
+      <div class="tooltip">Overflowing water can erode soil causing foundation shift.</div>
     </div>
 
-    <!-- RIGHT DOTS -->
-    <div class="hotspot dot-right" style="top: 18%; left: 91%;">
-      <div class="dot"></div> MOLD & MILDEW
-      <div class="tooltip">Excess moisture leads to mold growth on siding and rooflines.</div>
+    <div class="hotspot" style="top: 19%; left: 83%;">
+      <div class="dot"></div>
+      MOLD & MILDEW
+      <div class="tooltip">Clogged gutters can lead to crawlspace moisture and mold growth.</div>
     </div>
 
-    <div class="hotspot dot-right" style="top: 44%; left: 91%;">
-      <div class="dot"></div> FIRE
-      <div class="tooltip">Dry leaves in gutters are fuel for ember-driven wildfires.</div>
+    <div class="hotspot" style="top: 39%; left: 79%;">
+      <div class="dot"></div>
+      FIRE
+      <div class="tooltip">Debris in gutters can ignite and spread fire to your roof.</div>
     </div>
 
-    <div class="hotspot dot-right" style="top: 64%; left: 91%;">
-      <div class="dot"></div> LANDSCAPE EROSION
-      <div class="tooltip">Overflowing water damages soil, roots, and decorative features.</div>
+    <div class="hotspot" style="top: 58%; left: 76%;">
+      <div class="dot"></div>
+      LANDSCAPE EROSION
+      <div class="tooltip">Overflowing gutters can damage plants and erode soil around your house.</div>
     </div>
+
   </div>
 </body>
 </html>
+
